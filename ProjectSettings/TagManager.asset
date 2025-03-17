@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags:
+  - Jumpable
+  - Hoop_Player1
+  - Hoop_Player2
+  - Ball
+  - Player1
+  - Player2
+  - Player1Score
+  - Player2Score
+  - PlayerHand
+  - PlayerHandPivot
+  - Player1CharacterPanel
+  - Player2CharacterPanel
+  - CharacterSelectionBorder
+  - CharacterSelectionButton
+  - SeparatorText
+  - Canvas
+  - Player1Cooldown
+  - Player2Cooldown
+  - CooldownFill
+  - JumpPad
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Jumpable
+  - Water
+  - UI
+  - PlayerHand
+  - Player
+  - ScreenshotLayer
+  - JumpPad
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  m_RenderingLayers:
+  - Default
