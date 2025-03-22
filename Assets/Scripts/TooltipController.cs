@@ -17,7 +17,7 @@ public class TooltipController : MonoBehaviour
         gameObject.SetActive(false);
         _canvas = GameObject.FindWithTag("Canvas").GetComponent<Canvas>();
     }
-
+ 
     private void Update()
     {
         if (!gameObject.activeSelf) return;

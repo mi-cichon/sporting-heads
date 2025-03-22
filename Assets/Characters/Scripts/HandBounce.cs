@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HandBounce : MonoBehaviour
 {
-    public float bounceForce = 1f;
+    public float bounceForce = 1.2f;
 
     void OnCollisionEnter2D(Collision2D collision)
     {

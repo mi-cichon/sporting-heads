@@ -7,9 +7,9 @@ public class MiciCharacter : CharacterBase
 {
     protected override float Speed => 4.0f;
     
-    protected override float JumpForce => 5.0f;
+    protected override float JumpForce => 2.5f;
     
-    protected override float HandRotationSpeed => 400.0f;
+    protected override float HandRotationSpeed => 500.0f;
     
     public override string CharacterName => "Polish Mountain";
     
@@ -23,12 +23,11 @@ public class MiciCharacter : CharacterBase
     
     private Coroutine _pullCoroutine;
     private const float PullDuration = 5f;
-    private const float PullForce = 1000f;
+    private const float PullForce = 500f;
     private const float PullRadius = 5f;
 
     private void StartPull()
     {
-        Debug.Log("start pull");
         if (_pullCoroutine != null) StopCoroutine(_pullCoroutine);
         _pullCoroutine = StartCoroutine(PullNearbyObjects());
     }
@@ -39,7 +38,7 @@ public class MiciCharacter : CharacterBase
 
         while (timer < PullDuration)
         {
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, PullRadius);
+            var colliders = Physics2D.OverlapCircleAll(transform.position, PullRadius);
 
             foreach (var collider in colliders)
             {

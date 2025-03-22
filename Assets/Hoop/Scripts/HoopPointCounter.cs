@@ -15,11 +15,6 @@ public class HoopPointCounter : MonoBehaviour
     {
         GameControllerInstance = GameObject.FindWithTag(GameControllerTag).GetComponent<GameController>();
     }
-
-    void Update()
-    {
-        
-    }
     
     void OnTriggerEnter2D(Collider2D other)
     {

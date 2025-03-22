@@ -24,6 +24,8 @@ TagManager:
   - Player2Cooldown
   - CooldownFill
   - JumpPad
+  - InfoText
+  - BonusController
   layers:
   - Default
   - TransparentFX
@@ -35,8 +37,8 @@ TagManager:
   - Player
   - ScreenshotLayer
   - JumpPad
-  - 
-  - 
+  - Ball
+  - Trump
   - 
   - 
   - 

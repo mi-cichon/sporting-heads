@@ -98,7 +98,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 88882dbd74e1c9449becb65a0eed8822, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -421,7 +421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b5ed397c1e7d804dbaa712abab6422a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slowDownFactor: 0.5
+  slowDownFactor: 0.3
 --- !u!1 &6145075563829041720
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,9 +566,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7091218083765696820}
   - component: {fileID: 5977454980096776015}
-  m_Layer: 0
+  - component: {fileID: 6656472328285712781}
+  m_Layer: 9
   m_Name: jump_pad_0
-  m_TagString: JumpPad
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -582,7 +583,7 @@ Transform:
   m_GameObject: {fileID: 6944896223505389316}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.457, y: -1.061, z: 2}
+  m_LocalPosition: {x: -1.583, y: -1.061, z: 2}
   m_LocalScale: {x: 0.24465527, y: 0.24465527, z: 0.24465527}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -644,6 +645,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6656472328285712781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6944896223505389316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebcc8a0a2d9b7fc4fb3f81556737689e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpPadCooldown: 5
+  jumpPadLaunchForce: 5
 --- !u!1 &8456261371812483960
 GameObject:
   m_ObjectHideFlags: 0
@@ -654,9 +669,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2959050815127949243}
   - component: {fileID: 6837676423746404407}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collision
-  m_TagString: Untagged
+  m_TagString: JumpPad
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -686,7 +701,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 88882dbd74e1c9449becb65a0eed8822, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

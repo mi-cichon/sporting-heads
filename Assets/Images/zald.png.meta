@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6d49a6e51407944488cb339fd498ec8e
+guid: 8f9df625815171d449c92c898a99457e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5718261990766605196
-    second: zald_0
+      213: 5579096683775698441
+    second: zald 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: zald_0
+      name: zald 1_0
       rect:
         serializedVersion: 2
         x: 283
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c83f244ebf85b5f40800000000000000
-      internalID: 5718261990766605196
+      spriteID: 906a204efdeec6d40800000000000000
+      internalID: 5579096683775698441
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      zald_0: 5718261990766605196
+      zald 1_0: 5579096683775698441
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -7,7 +7,7 @@ public class ZaldCharacter : CharacterBase
 {
     protected override float Speed => 5.0f;
     
-    protected override float JumpForce => 5.0f;
+    protected override float JumpForce => 3.0f;
     
     protected override float HandRotationSpeed => 500.0f;
 
@@ -22,7 +22,7 @@ public class ZaldCharacter : CharacterBase
     protected override Action UseSuperPower => ApplySlow;
     
     private const float SlowFactor = 0.3f;
-    private const float SpeedFactor = 2f;
+    private const float SpeedFactor = 1.3f;
     private const float SlowDuration = 5f;
 
     private void ApplySlow()

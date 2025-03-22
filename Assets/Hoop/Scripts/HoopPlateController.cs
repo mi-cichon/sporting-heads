@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HoopPlateController : MonoBehaviour
 {
-    public float slowDownFactor = 0.5f;
+    public float slowDownFactor = 0.3f;
     
     private const string BallTag = "Ball";
     
