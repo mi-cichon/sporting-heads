@@ -928,6 +928,8 @@ MonoBehaviour:
   bonuses:
   - {fileID: 8675391816120977027, guid: c9b95d72ca9ce4447896f28673dd7afc, type: 3}
   - {fileID: 4243869973150695253, guid: d98a97986e001564a875c555fc20b365, type: 3}
+  - {fileID: 353263680571677597, guid: 06c9bfef952c5c94b93ffa65f40ea589, type: 3}
+  - {fileID: 9045573234238759418, guid: 4220e096728aef149bc62c8a32dc6115, type: 3}
 --- !u!224 &246557337
 RectTransform:
   m_ObjectHideFlags: 0
@@ -945,7 +947,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 10, y: 6}
+  m_SizeDelta: {x: 10, y: 4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &276751423
 GameObject:

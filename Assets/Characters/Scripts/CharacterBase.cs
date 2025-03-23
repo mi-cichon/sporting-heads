@@ -79,6 +79,8 @@ namespace Characters.Scripts
         private SpriteRenderer _freezeRenderer;
         private const string FreezeTag = "Freeze";
 
+        private Vector3 _defaultLocalScale; 
+
         void Start()
         {
             _playerLayer = LayerMask.NameToLayer(PlayerLayerName);
@@ -89,6 +91,8 @@ namespace Characters.Scripts
             _playerHand = GetChildWithTagRecursive(transform, PlayerHandTag).gameObject;
             _playerHandPivot = GetChildWithTagRecursive(_playerHand.transform, PlayerHandPivotTag).gameObject;
             _freezeRenderer = GetChildWithTagRecursive(transform, FreezeTag).GetComponent<SpriteRenderer>();
+
+            _defaultLocalScale = transform.localScale;
             
             SetSide();
         }
@@ -265,6 +269,18 @@ namespace Characters.Scripts
             yield return new WaitForSeconds(duration);
             _freezeRenderer.enabled = false;
             _freezeInputs = false;
+        }
+        
+        public void ChangeSize(float factor, float duration)
+        {
+            StartCoroutine(ChangeSizeCoroutine(factor, duration));
+        }
+
+        private IEnumerator ChangeSizeCoroutine(float factor, float duration)
+        {
+            transform.localScale = _defaultLocalScale * factor;
+            yield return new WaitForSeconds(duration);
+            transform.localScale = _defaultLocalScale;
         }
         
         private void SetSide()

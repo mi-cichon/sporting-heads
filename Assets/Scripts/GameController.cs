@@ -23,7 +23,6 @@ public class GameController : MonoBehaviour
     private const string BallTag = "Ball";
     private const string Player1ScoreTag = "Player1Score";
     private const string Player2ScoreTag = "Player2Score";
-    private const string SeparatorTextTag = "SeparatorText";
     private const string InfoTextTag = "InfoText";
 
     private readonly Vector3 _defaultBallPosition = new(0.0f, 1.5f, -2.001f);
@@ -34,7 +33,6 @@ public class GameController : MonoBehaviour
     
     private TextMeshProUGUI _player1ScoreInstance;
     private TextMeshProUGUI _player2ScoreInstance;
-    private TextMeshProUGUI _separatorTextInstance;
     private TextMeshProUGUI _infoTextInstance;
 
     private GameObject _player1Character;
@@ -42,9 +40,11 @@ public class GameController : MonoBehaviour
     
     private const string PlayerPrefsCharacter1 = "Character1";
     private const string PlayerPrefsCharacter2 = "Character2";
-    private const string SeparatorDefaultText = ":";
 
     private const string ScoredText = "scored for {0} points!";
+    private const string WonText = "{0} won!";
+
+    private const float WonTextDuration = 15.0f;
     
     void Start()
     {
@@ -54,7 +54,6 @@ public class GameController : MonoBehaviour
         
         _player1ScoreInstance = GameObject.FindWithTag(Player1ScoreTag).GetComponent<TextMeshProUGUI>();
         _player2ScoreInstance = GameObject.FindWithTag(Player2ScoreTag).GetComponent<TextMeshProUGUI>();
-        _separatorTextInstance = GameObject.FindWithTag(SeparatorTextTag).GetComponent<TextMeshProUGUI>();
         _infoTextInstance = GameObject.FindWithTag(InfoTextTag).GetComponent<TextMeshProUGUI>();
         
         var player1CharacterName = PlayerPrefs.GetString(PlayerPrefsCharacter1);
@@ -101,19 +100,15 @@ public class GameController : MonoBehaviour
 
         if (_player1Points >= maxPoints)
         {
-            _infoTextInstance.text = string.Empty;
-            _separatorTextInstance.text = "Player 1 won!";
-            _player1ScoreInstance.gameObject.SetActive(false);
-            _player2ScoreInstance.gameObject.SetActive(false);
+            var wonText = string.Format(WonText, player1Instance.CharacterName);
+            ShowText(wonText, WonTextDuration);
             Destroy(_ballInstance);
         }
         
         if (_player2Points >= maxPoints)
         {
-            _infoTextInstance.text = string.Empty;
-            _separatorTextInstance.text = "Player 2 won!";
-            _player1ScoreInstance.gameObject.SetActive(false);
-            _player2ScoreInstance.gameObject.SetActive(false);
+            var wonText = string.Format(WonText, player2Instance.CharacterName);
+            ShowText(wonText, WonTextDuration);
             Destroy(_ballInstance);
         }
         
@@ -133,22 +128,26 @@ public class GameController : MonoBehaviour
         player2Instance.FreezeInput(freezeDuration);
         _basketballController.FreezeBall(true);
 
-        StartCoroutine(ShowText(scoredByText, freezeDuration, ResetRound));
+        ShowText(scoredByText, freezeDuration, ResetRound);
+        UpdateUi();
+    }
+
+    public void ShowText(string content, float duration, Action invokeAfter = null)
+    {
+        StartCoroutine(ShowTextCoroutine(content, duration, invokeAfter));
     }
     
-    private IEnumerator ShowText(string scoredByText, float duration, Action customAction = null)
+    private IEnumerator ShowTextCoroutine(string content, float duration, Action customAction = null)
     {
-        _infoTextInstance.text = scoredByText;
+        _infoTextInstance.text = content;
         
         yield return new WaitForSeconds(duration);
         
         _infoTextInstance.text = string.Empty;
-        
-        UpdateUi();
 
         customAction?.Invoke();
     }
-
+    
     private void UpdateUi()
     {
         _player1ScoreInstance.text = _player1Points.ToString("F0");
@@ -169,6 +168,7 @@ public class GameController : MonoBehaviour
         ballRigidbody.angularVelocity = 0;
         ballRigidbody.linearVelocity = Vector2.zero;
         _basketballController.FreezeBall(false);
+        _basketballController.lastTouchCharacter = null;
     }
 
     private void CreatePlayer1()

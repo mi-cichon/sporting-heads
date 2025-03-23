@@ -27,6 +27,11 @@ public abstract class BonusBase : MonoBehaviour
     private GameController _gameController;
     private const string GameControllerTag = "GameController";
 
+    private const string PickedUpText = "{0} picked up{1} {2}";
+    private const string PositiveBonusText = " +";
+    private const string NegativeBonusText = " -";
+    private const float PickedUpTextDuration = 2.0f;
+
     void Start()
     {
         _ballLayer = LayerMask.NameToLayer(BallLayerName);
@@ -52,7 +57,7 @@ public abstract class BonusBase : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer != _ballLayer)
+        if (collision.gameObject.layer != _ballLayer || !_ballController.lastTouchCharacter)
         {
             return;
         }
@@ -64,6 +69,16 @@ public abstract class BonusBase : MonoBehaviour
             : _gameController.player1Instance;
 
         OnPickUp(touchedBy, otherPlayer);
+
+        var stateText = BonusType == BonusType.PlayerBased
+            ? IsPositive
+                ? PositiveBonusText
+                : NegativeBonusText
+            : string.Empty;
+
+        var pickedUpText = string.Format(PickedUpText, touchedBy.CharacterName, stateText, Name);
+        
+        _gameController.ShowText(pickedUpText, PickedUpTextDuration);
 
         Destroy(gameObject);
     }

@@ -1,4 +1,5 @@
 using Characters.Scripts;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class BasketballController : MonoBehaviour
@@ -11,7 +12,7 @@ public class BasketballController : MonoBehaviour
     private const string PlayerLayerName = "Player";
     private const string PlayerHandLayerName = "PlayerHand";
 
-    public CharacterBase lastTouchCharacter;
+    [CanBeNull] public CharacterBase lastTouchCharacter;
     public Vector3 lastTouchPosition;
    
     void Start()
