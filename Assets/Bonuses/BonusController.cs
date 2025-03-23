@@ -7,6 +7,9 @@ public class BonusController : MonoBehaviour
     public BonusBase[] bonuses;
     
     private RectTransform _rectTransform;
+
+    private readonly Color _bonusPositiveColor = Color.green;
+    private readonly Color _bonusNegativeColor = Color.red;
     
     private const float MinBonusCooldown = 10.0f;
     private const float MaxBonusCooldown = 30.0f;
@@ -37,6 +40,15 @@ public class BonusController : MonoBehaviour
 
         var bonusInstance = Instantiate(bonus);
         bonusInstance.StartBonusInstance(location, isPositive);
+        
+        if (bonusInstance.BonusType == BonusType.PlayerBased)
+        {
+            var spriteRenderer = bonusInstance.GetComponent<SpriteRenderer>();
+            
+            spriteRenderer.color = isPositive
+                ? _bonusPositiveColor
+                : _bonusNegativeColor;
+        }
     }
         
     private Vector3 GetRandomBonusLocation()

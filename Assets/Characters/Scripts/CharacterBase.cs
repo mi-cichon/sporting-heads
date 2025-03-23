@@ -76,6 +76,9 @@ namespace Characters.Scripts
         private const string Player2CooldownTag = "Player2Cooldown";
         private const string CooldownFillTag = "CooldownFill";
 
+        private SpriteRenderer _freezeRenderer;
+        private const string FreezeTag = "Freeze";
+
         void Start()
         {
             _playerLayer = LayerMask.NameToLayer(PlayerLayerName);
@@ -85,6 +88,7 @@ namespace Characters.Scripts
             _rigidbody = gameObject.GetComponent<Rigidbody2D>();
             _playerHand = GetChildWithTagRecursive(transform, PlayerHandTag).gameObject;
             _playerHandPivot = GetChildWithTagRecursive(_playerHand.transform, PlayerHandPivotTag).gameObject;
+            _freezeRenderer = GetChildWithTagRecursive(transform, FreezeTag).GetComponent<SpriteRenderer>();
             
             SetSide();
         }
@@ -246,15 +250,20 @@ namespace Characters.Scripts
                 .GetComponent<Image>();
         }
         
-        public void FreezeInput(float duration)
+        public void FreezeInput(float duration, bool showFreezeAnim = false)
         {
-            StartCoroutine(FreezeInputCoroutine(duration));
+            StartCoroutine(FreezeInputCoroutine(duration, showFreezeAnim));
         }
 
-        private IEnumerator FreezeInputCoroutine(float duration)
+        private IEnumerator FreezeInputCoroutine(float duration, bool showFreezeAnim)
         {
             _freezeInputs = true;
+            if (showFreezeAnim)
+            {
+                _freezeRenderer.enabled = true;
+            }
             yield return new WaitForSeconds(duration);
+            _freezeRenderer.enabled = false;
             _freezeInputs = false;
         }
         
@@ -264,7 +273,7 @@ namespace Characters.Scripts
             {
                 return;
             }
-            
+            _freezeRenderer.transform.position = new Vector3(_freezeRenderer.transform.position.x, _freezeRenderer.transform.position.y, 1);
             transform.Rotate(0f, 180f, 0f);
             transform.position = new Vector3(transform.position.x, transform.position.y, -2);
             _playerHand.transform.position = new Vector3(_playerHand.transform.position.x, _playerHand.transform.position.y, -1);
