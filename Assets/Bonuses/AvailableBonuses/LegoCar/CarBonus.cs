@@ -7,7 +7,7 @@ public class CarBonus : BonusBase
 {
     public CarController legoCarPrefab;
     
-    public override float Rarity => 1000f;
+    public override float Rarity => 0.3f;
 
     public override BonusType BonusType => BonusType.Common;
 
