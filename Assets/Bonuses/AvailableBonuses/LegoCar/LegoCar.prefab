@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3346149187585311949}
   - component: {fileID: 229886209139599455}
   m_Layer: 0
-  m_Name: lego_car
+  m_Name: LegoCar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

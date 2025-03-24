@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ff5c953e1b11d14eaa97d91758cc7a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LegoCarPrefab: {fileID: 229886209139599455, guid: 81a7b81004a2f7e4ba05e2d37bfb8ebb, type: 3}
+  legoCarPrefab: {fileID: 229886209139599455, guid: 81a7b81004a2f7e4ba05e2d37bfb8ebb, type: 3}
 --- !u!70 &8574839162418535019
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

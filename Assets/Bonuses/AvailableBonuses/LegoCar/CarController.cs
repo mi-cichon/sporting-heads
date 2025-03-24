@@ -2,48 +2,55 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
-    public int Direction;
-
-    [SerializeField]
+    private int _direction;
+    
     private const float MoveSpeed = 12f;
     private const float Lifetime = 15f;
     private const float WypierdolenieForce = 30f;
 
+    private const string PlayerTag = "Player";
+    private const string PlayerLayerName = "Player";
+    
+    private int _playerLayer;
+
     public void Init(int direction)
     {
-        Direction = direction;
+        _direction = direction;
 
         var spriteRenderer = GetComponent<SpriteRenderer>();
 
-        if (Direction < 0)
+        if (_direction < 0)
         {
             spriteRenderer.flipX = true;
         }
+
+        _playerLayer = LayerMask.NameToLayer(PlayerLayerName);
 
         Destroy(gameObject, Lifetime);
     }
 
     void FixedUpdate()
     {
-        transform.Translate(new Vector2(Direction, 0) * Time.deltaTime * MoveSpeed);   
+        transform.Translate(new Vector2(_direction, 0) * (Time.deltaTime * MoveSpeed));   
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("COLLISON");
-
-        if (collision.gameObject.tag == "Player" || collision.gameObject.layer == 10)
+        if (!collision.gameObject.CompareTag(PlayerTag) && collision.gameObject.layer != _playerLayer)
         {
-            Vector2 direction = (collision.gameObject.transform.position - gameObject.transform.position).normalized * WypierdolenieForce;
-
-            var rigidbody = collision.gameObject.GetComponent<Rigidbody2D>();
-
-            if (rigidbody == null)
-            {
-                return;
-            }
-
-            rigidbody.AddForce(direction, ForceMode2D.Impulse);
+            return;
         }
+        
+        var direction = (collision.gameObject.transform.position - gameObject.transform.position).normalized 
+                        * WypierdolenieForce;
+
+        var collisionRigidBody = collision.gameObject.GetComponent<Rigidbody2D>();
+
+        if (!collisionRigidBody)
+        {
+            return;
+        }
+
+        collisionRigidBody.AddForce(direction, ForceMode2D.Impulse);
     }
 }

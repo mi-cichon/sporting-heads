@@ -79,7 +79,7 @@ namespace Characters.Scripts
         private SpriteRenderer _freezeRenderer;
         private const string FreezeTag = "Freeze";
 
-        private Vector3 _defaultLocalScale; 
+        private Vector3 _defaultLocalScale;
 
         void Start()
         {
@@ -278,7 +278,11 @@ namespace Characters.Scripts
 
         private IEnumerator ChangeSizeCoroutine(float factor, float duration)
         {
-            transform.localScale = _defaultLocalScale * factor;
+            transform.localScale = new Vector3(
+                _defaultLocalScale.x * factor, 
+                _defaultLocalScale.y * factor, 
+                _defaultLocalScale.z);
+            
             yield return new WaitForSeconds(duration);
             transform.localScale = _defaultLocalScale;
         }

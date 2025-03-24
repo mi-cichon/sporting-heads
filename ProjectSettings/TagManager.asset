@@ -27,6 +27,7 @@ TagManager:
   - InfoText
   - BonusController
   - Freeze
+  - BackHoop
   layers:
   - Default
   - TransparentFX

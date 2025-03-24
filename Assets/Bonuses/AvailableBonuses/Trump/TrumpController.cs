@@ -8,8 +8,7 @@ public class TrumpController : MonoBehaviour
     private bool _isGrounded = true;
 
     private const float MoveSpeed = 3f;
-    private const float DirectionChangeChance = 0.015f;
-    private const float JumpForce = 4f;
+    private const float JumpForce = 5f;
     private const float MinWaitTime = 1f;
     private const float MaxWaitTime = 2f;
 
@@ -17,6 +16,8 @@ public class TrumpController : MonoBehaviour
 
     private int _jumpableLayer;
     private const string JumpableLayerName = "Jumpable";
+
+    private const string BackHoopTag = "BackHoop";
 
     private void Start()
     {
@@ -28,11 +29,6 @@ public class TrumpController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Random.value < DirectionChangeChance)
-        {
-            _currentDirection *= -1f;
-        }
-
         _rigidbody.linearVelocity = new Vector2(_currentDirection * MoveSpeed, _rigidbody.linearVelocity.y);
     }
 
@@ -42,11 +38,13 @@ public class TrumpController : MonoBehaviour
         {
             yield return new WaitForSeconds(Random.Range(MinWaitTime, MaxWaitTime));
 
-            if (_isGrounded)
+            if (!_isGrounded)
             {
-                _rigidbody.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
-                _isGrounded = false;
+                continue;
             }
+            
+            _rigidbody.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
+            _isGrounded = false;
         }
     }
 
@@ -55,6 +53,12 @@ public class TrumpController : MonoBehaviour
         if (collision.gameObject.layer == _jumpableLayer)
         {
             _isGrounded = true;
+            return;
+        }
+
+        if (collision.gameObject.CompareTag(BackHoopTag))
+        {
+            _currentDirection *= -1;
         }
     }
 }

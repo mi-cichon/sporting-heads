@@ -103,6 +103,7 @@ public class GameController : MonoBehaviour
             var wonText = string.Format(WonText, player1Instance.CharacterName);
             ShowText(wonText, WonTextDuration);
             Destroy(_ballInstance);
+            return;
         }
         
         if (_player2Points >= maxPoints)
@@ -110,6 +111,7 @@ public class GameController : MonoBehaviour
             var wonText = string.Format(WonText, player2Instance.CharacterName);
             ShowText(wonText, WonTextDuration);
             Destroy(_ballInstance);
+            return;
         }
         
         var scoredByPlayerName = isPlayer2Hoop
